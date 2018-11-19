@@ -63,12 +63,12 @@ app.use(require('./routers/orderRouter'));
 app.use(require('./routers/taskRouter'));
 
 
-fetch('https://randomfox.ca/floof/')
-    .then(response => response.json())
-    .then(json => {
-        app.get('/foxes', (req, res) => {
+app.get('/foxes', (req, res) => {
+    fetch('https://randomfox.ca/floof')
+        .then(res => res.json())
+        .then(json => {
             res.json(json.image)
         })
-    });
+})
 
 app.listen(3003, () => console.log('Listening on port 3003!'));
